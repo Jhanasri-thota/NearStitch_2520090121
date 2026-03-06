@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<!-- ================================================= -->
+
+<!-- CO1 – HTML Structure + Internet Fundamentals -->
+
+<!-- ================================================= -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NearStitch – Tailoring Marketplace</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">NearStitch</div>
+
+<div>
+<button onclick="toggleTheme()">🌙</button>
+<button onclick="logout()">Logout</button>
+</div>
+
+</nav>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<h1>We Stitch Designs that Fit You Perfectly</h1>
+
+<p>Find nearby professional tailors with pickup & delivery.</p>
+
+<input id="location" placeholder="Enter your location">
+
+<br>
+
+<button onclick="searchTailors()">Find Tailors</button> <button onclick="showAuth()">Get Started</button>
+
+</section>
+
+<!-- SEARCH RESULTS -->
+
+<div id="results" class="section hidden">
+
+<h2>Nearby Tailors</h2>
+
+<div class="cards" id="shopList"></div>
+
+</div>
+
+<!-- TAILOR PROFILE -->
+
+<div id="profile" class="section hidden"></div>
+
+<!-- AUTHENTICATION -->
+
+<div id="auth" class="section hidden">
+
+<h2>Login / Register</h2>
+
+<select id="role">
+<option value="customer">Customer</option>
+<option value="tailor">Tailor</option>
+<option value="admin">Admin</option>
+</select>
+
+<input id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Continue</button>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="section hidden"></div>
+
+<div id="toast">Booking Confirmed!</div>
+
+<footer>
+<p>© 2026 NearStitch</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
