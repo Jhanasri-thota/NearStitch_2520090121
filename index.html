@@ -1,95 +1,246 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
-<!-- ================================================= -->
-
-<!-- CO1 – HTML Structure + Internet Fundamentals -->
-
-<!-- ================================================= -->
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NearStitch – Tailoring Marketplace</title>
+<title>NearStitch | Local Tailoring & Pickup</title>
 
 <link rel="stylesheet" href="style.css">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
+<header>
+
+<a href="#" class="logo">NearStitch</a>
+
 <nav>
-
-<div class="logo">NearStitch</div>
-
-<div>
-<button onclick="toggleTheme()">🌙</button>
-<button onclick="logout()">Logout</button>
-</div>
-
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#tailors">Tailors</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#booking">Book Now</a></li>
+</ul>
 </nav>
 
-<!-- HERO SECTION -->
+<button class="btn btn-primary" onclick="toggleDarkMode()">🌓 Mode</button>
 
-<section class="hero">
+</header>
 
-<h1>We Stitch Designs that Fit You Perfectly</h1>
 
-<p>Find nearby professional tailors with pickup & delivery.</p>
+<section id="home">
 
-<input id="location" placeholder="Enter your location">
+<div class="hero-content">
+
+<h1>We Stitch Designs that Fit You Perfectly.</h1>
+
+<p>Quality stitching meets doorstep convenience. Pickup. Stitch. Delivery.</p>
 
 <br>
 
-<button onclick="searchTailors()">Find Tailors</button> <button onclick="showAuth()">Get Started</button>
+<a href="#booking" class="btn btn-primary">Start Your Order</a>
+
+</div>
 
 </section>
 
-<!-- SEARCH RESULTS -->
 
-<div id="results" class="section hidden">
+<section id="about">
 
-<h2>Nearby Tailors</h2>
+<h2 style="text-align:center">About NearStitch</h2>
 
-<div class="cards" id="shopList"></div>
+<p style="text-align:center;max-width:800px;margin:20px auto">
+NearStitch connects customers with skilled local tailors and provides
+doorstep pickup and delivery services for stitching and alterations.
+Our goal is to make tailoring services convenient, affordable,
+and accessible to everyone.
+</p>
+
+</section>
+
+
+<div class="stats-bar">
+
+<div>
+<h3>1200+</h3>
+<p>Orders Done</p>
+</div>
+
+<div>
+<h3>45</h3>
+<p>Expert Tailors</p>
+</div>
+
+<div>
+<h3>98%</h3>
+<p>Happy Clients</p>
+</div>
 
 </div>
 
-<!-- TAILOR PROFILE -->
 
-<div id="profile" class="section hidden"></div>
+<section id="tailors">
 
-<!-- AUTHENTICATION -->
+<h2 style="text-align:center">Our Expert Tailors</h2>
 
-<div id="auth" class="section hidden">
+<div style="text-align:center;margin:20px">
 
-<h2>Login / Register</h2>
+<input type="text"
+id="tailorSearch"
+placeholder="Search by specialization..."
+style="max-width:400px"
+onkeyup="filterTailors()">
 
-<select id="role">
-<option value="customer">Customer</option>
-<option value="tailor">Tailor</option>
-<option value="admin">Admin</option>
+</div>
+
+<div class="grid-container" id="tailorGrid"></div>
+
+</section>
+
+
+<section id="pricing">
+
+<h2 style="text-align:center">Estimated Pricing</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Service Type</th>
+<th>Basic Stitching</th>
+<th>Premium Custom</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Blouse / Shirt</td>
+<td>₹400</td>
+<td>₹800</td>
+</tr>
+
+<tr>
+<td>Trousers / Skirt</td>
+<td>₹500</td>
+<td>₹900</td>
+</tr>
+
+<tr>
+<td>Full Suit / Wedding Wear</td>
+<td>₹2500</td>
+<td>₹6000+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+
+<section id="booking">
+
+<div class="form-container">
+
+<h2 style="text-align:center">Book a Pickup</h2>
+
+<form id="orderForm">
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" required>
+</div>
+
+<div class="form-group">
+<label>Phone Number</label>
+<input type="tel" required>
+</div>
+
+<div class="form-group">
+<label>Pickup Address</label>
+<textarea rows="3" required></textarea>
+</div>
+
+<div class="form-group">
+<label>Clothing Type</label>
+<select id="clothType">
+<option>Ethnic Wear</option>
+<option>Formal Wear</option>
+<option>Casual Wear</option>
 </select>
+</div>
 
-<input id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
+<div class="form-group">
+<label>Stitch Type</label><br>
+<input type="radio" name="stype" checked> New Stitch
+<input type="radio" name="stype"> Alteration
+</div>
 
-<button onclick="login()">Continue</button>
+<div class="form-group">
+<label>Preferred Tailor</label>
+<select id="tailorSelect"></select>
+</div>
+
+<div class="form-group">
+<label>Pickup Date</label>
+<input type="date" required>
+</div>
+
+<div class="form-group">
+<input type="checkbox" id="express" style="width:auto">
+<label for="express">Express Delivery (24 hrs) +₹200</label>
+</div>
+
+<div class="form-group">
+<label>Special Instructions</label>
+<textarea></textarea>
+</div>
+
+<button type="submit" class="btn btn-primary" style="width:100%">
+Confirm Order
+</button>
+
+<button type="reset" class="btn" style="width:100%;margin-top:10px;background:#eee">
+Clear Form
+</button>
+
+</form>
 
 </div>
 
-<!-- DASHBOARD -->
+</section>
 
-<div id="dashboard" class="section hidden"></div>
 
-<div id="toast">Booking Confirmed!</div>
+<div id="modal">
+
+<h2 style="color:var(--accent-rose)">Order Received 🧵</h2>
+
+<p id="orderSummary"></p>
+
+<br>
+
+<button class="btn btn-primary" onclick="closeModal()">Close</button>
+
+</div>
+
 
 <footer>
-<p>© 2026 NearStitch</p>
+
+<p>© 2026 NearStitch Tailoring Services</p>
+
+<div class="social-links">
+<a href="#">Instagram</a> |
+<a href="#">Facebook</a> |
+<a href="#">Pinterest</a>
+</div>
+
 </footer>
 
 <script src="script.js"></script>
